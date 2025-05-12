@@ -882,5 +882,7 @@
   "com_ui_edit_editing_image": "Editing image",
   "com_ui_image_edited": "Image edited",
   "com_user_message": "You",
-  "com_warning_resubmit_unsupported": "Resubmitting the AI message is not supported for this endpoint."
+  "com_warning_resubmit_unsupported": "Resubmitting the AI message is not supported for this endpoint.",
+  "com_citation_source": "Source",
+  "com_citation_more_details": "More details about {{label}}"
 }
