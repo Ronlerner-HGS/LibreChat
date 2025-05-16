@@ -7,18 +7,19 @@ import { useAttachmentLink } from './LogLink';
 import { cn } from '~/utils';
 
 const FileAttachment = memo(({ attachment }: { attachment: TAttachment }) => {
+  const [isVisible, setIsVisible] = useState(false);
   const { handleDownload } = useAttachmentLink({
     href: attachment.filepath,
     filename: attachment.filename,
   });
-  const extension = attachment.filename.split('.').pop();
-  const [isVisible, setIsVisible] = useState(false);
-
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 50);
     return () => clearTimeout(timer);
   }, []);
-
+  if (!attachment.filepath) {
+    return null;
+  }
+  const extension = attachment.filename.split('.').pop();
   return (
     <div
       className={cn(
@@ -113,7 +114,7 @@ export function AttachmentGroup({ attachments }: { attachments?: TAttachment[] }
 
     if (isImage) {
       imageAttachments.push(attachment);
-    } else {
+    } else if (attachment.type !== Tools.web_search) {
       fileAttachments.push(attachment);
     }
   });
